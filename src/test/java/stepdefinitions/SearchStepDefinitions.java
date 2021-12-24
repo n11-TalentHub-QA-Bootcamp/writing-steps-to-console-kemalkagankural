@@ -36,18 +36,19 @@ public class SearchStepDefinitions {
     public void iOpenBrowserAndGoToTheMainPage() {
         actor.can(BrowseTheWeb.with(theBrowser));
         actor.wasAbleTo(NavigateTo.theAutomationPracticeHomePage());
-
     }
 
     @When("I search with {string} in the home page")
     public void iSearchWithInTheHomePage(String term) {
         term = "kaan";
         actor.attemptsTo(LookForProductItem.about(term));
-        try {
+        /*try {
             Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
     @Then("api endpoint should be called with {string}")
@@ -57,11 +58,12 @@ public class SearchStepDefinitions {
                 Get.resource("index.php?controller=search&q=test&limit=10&timestamp=1639907643890&ajaxSearch=1&id_lang=1")
         );
 
-        try {
+        /*try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+         */
     }
 
     @When("api returned related results")
@@ -70,12 +72,12 @@ public class SearchStepDefinitions {
                 seeThatResponse("related results should be retrieved",
                         response -> response.statusCode(200))
         );
+        /*
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
+        }*/
     }
 
     @Then("I should see related results on the main page")
@@ -88,10 +90,10 @@ public class SearchStepDefinitions {
                 Ensure.that(CurrentSearchResultCount.information())
                         .contains(resultList.size() +" results have been found.")
         );
-        try {
+       /*try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
